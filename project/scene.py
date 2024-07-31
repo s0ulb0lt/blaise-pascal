@@ -42,3 +42,12 @@ class BlaisePascal(Scene):
         self.play(FadeIn(imtitle))
         self.wait(1)
         self.play(Transform(title, span))
+        self.wait(3)
+        
+        rmAnimTitle = [
+            FadeOut(title, shift=DOWN),
+            FadeOut(imtitle, shift=DOWN)
+        ]
+
+        self.play(AnimationGroup(*rmAnimTitle, lag_ratio=0.5))
+        self.wait(1)
