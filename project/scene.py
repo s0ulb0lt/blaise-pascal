@@ -5,9 +5,7 @@ from pathlib import Path
 from openai import OpenAI
 import os
 
-client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY")
-)
+client = OpenAI()
 
 speechFilePath = Path(__file__).parent / "speech.mp3"
 respone = client.audio.speech.create(
