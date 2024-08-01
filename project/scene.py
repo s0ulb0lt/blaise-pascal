@@ -1,5 +1,6 @@
 from manim import *
 from math import comb
+
 from pathlib import Path
 from openai import OpenAI
 import os
