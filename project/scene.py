@@ -1,5 +1,5 @@
 from manim import *
-
+from math import comb
 
 class CreateCircle(Scene):
     def construct(self):
@@ -30,12 +30,13 @@ class SquareAndCircle(Scene):
         square.next_to(circle, RIGHT, buff=0.5)  # set the position
         self.play(Create(circle), Create(square))  # show the shapes on screen
 
-class BlaisePascal(Scene):
+class BlaisePascalIntro(Scene):
     def construct(self):
         title = Tex("Blaise Pascal").scale(2)
         span = Tex("1623 - 1662").scale(2)
         span.move_to(2.2*UP)
         imtitle = ImageMobject("bpascal").scale(0.5)
+        conimage = SVGMobject("conicsections.svg").scale(1)
         self.play(DrawBorderThenFill(title))
         self.wait(2)
         self.play(title.animate.move_to(2.2*UP))
@@ -50,4 +51,32 @@ class BlaisePascal(Scene):
         ]
 
         self.play(AnimationGroup(*rmAnimTitle, lag_ratio=0.5))
+        self.wait(3)
+        mTitle = Tex("Mathematician").scale(2)
+        cTitle = Tex("Conics").scale(1)
+        self.play(DrawBorderThenFill(mTitle))
+        self.wait(3)
+        self.play(Transform(mTitle, cTitle))
+        self.play(mTitle.animate.move_to(1.2*UP+2.2*LEFT))
+        self.play(DrawBorderThenFill(conimage))
+        self.play(ScaleInPlace(conimage, 0.5))
+        self.play(conimage.animate.move_to(2.2*LEFT))
+
+        self.wait()
+        pyramid=VGroup(*[
+            VGroup(*[
+                MathTex(comb(row, col))
+                for col in range(row+1)
+            ]).arrange(RIGHT)
+            for row in range(4)
+        ]).arrange(DOWN)
+        self.play(DrawBorderThenFill(pyramid))
         self.wait(1)
+        self.play(pyramid.animate.move_to(2.2*RIGHT+0.2*DOWN))
+
+        ptrstitle = Tex("Pascal's Triangle").scale(1)
+        ptrstitle.move_to(2.2*RIGHT+1.2*UP)
+        self.play(FadeIn(ptrstitle, target_position=mTitle))
+        self.wait(2)
+        
+
