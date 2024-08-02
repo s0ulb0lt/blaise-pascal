@@ -44,12 +44,9 @@ class BlaisePascalIntro(Scene):
         imtitle = ImageMobject("bpascal").scale(0.5)
         conimage = SVGMobject("conicsections.svg").scale(1)
         self.play(DrawBorderThenFill(title))
-        self.wait()
         self.play(title.animate.move_to(2.2*UP))
         self.play(FadeIn(imtitle))
-        self.wait()
         self.play(Transform(title, span))
-        self.wait()
         
         rmAnimTitle = [
             FadeOut(title, shift=DOWN),
@@ -57,11 +54,9 @@ class BlaisePascalIntro(Scene):
         ]
 
         self.play(AnimationGroup(*rmAnimTitle, lag_ratio=0.5))
-        self.wait()
         mTitle = Tex("Mathematician").scale(2)
         cTitle = Tex("Conics").scale(1)
         self.play(DrawBorderThenFill(mTitle))
-        self.wait()
         self.play(Transform(mTitle, cTitle))
         self.play(mTitle.animate.move_to(1.2*UP+2.2*LEFT))
         self.play(DrawBorderThenFill(conimage))
@@ -133,6 +128,7 @@ class BlaisePascalIntro(Scene):
         plr2Won.move_to(LEFT*3)
         pl2.move_to(RIGHT*3+UP*2)
         self.play(DrawBorderThenFill(ch3title))
+        self.wait(3)
         self.play(Transform(ch3title, pl1))
         self.play(ch3title.animate.move_to(LEFT*3+UP*2))
         self.play(FadeIn(pl2, target_position=ch3title))
@@ -155,6 +151,8 @@ class BlaisePascalIntro(Scene):
         ch4title = Tex("Chapter 4: Legacy").scale(2)
         legacy = Tex("Legacy")
         legacy.move_to(UP*2)
+        quote = Tex("Don't try to add more years to your life. Better add more life to your years.").scale(0.7)
+        quote.move_to(UP*2)
 
         deviation = SVGMobject("deviation.svg")
 
@@ -166,6 +164,7 @@ class BlaisePascalIntro(Scene):
         self.wait()
         self.play(FadeOut(deviation))
         self.play(FadeIn(imtitle))
+        self.play(Transform(ch4title, quote))
         self.wait(5)
 
 
