@@ -163,7 +163,10 @@ class BlaisePascalIntro(Scene):
         self.play(Transform(ch4title, legacy))
 
         self.play(DrawBorderThenFill(deviation))
-
+        self.wait()
+        self.play(FadeOut(deviation))
+        self.play(FadeIn(imtitle))
+        self.wait(5)
 
 
         
