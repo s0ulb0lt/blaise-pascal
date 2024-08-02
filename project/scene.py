@@ -44,12 +44,12 @@ class BlaisePascalIntro(Scene):
         imtitle = ImageMobject("bpascal").scale(0.5)
         conimage = SVGMobject("conicsections.svg").scale(1)
         self.play(DrawBorderThenFill(title))
-        self.wait(2)
+        self.wait()
         self.play(title.animate.move_to(2.2*UP))
         self.play(FadeIn(imtitle))
-        self.wait(1)
+        self.wait()
         self.play(Transform(title, span))
-        self.wait(3)
+        self.wait()
         
         rmAnimTitle = [
             FadeOut(title, shift=DOWN),
@@ -57,11 +57,11 @@ class BlaisePascalIntro(Scene):
         ]
 
         self.play(AnimationGroup(*rmAnimTitle, lag_ratio=0.5))
-        self.wait(3)
+        self.wait()
         mTitle = Tex("Mathematician").scale(2)
         cTitle = Tex("Conics").scale(1)
         self.play(DrawBorderThenFill(mTitle))
-        self.wait(3)
+        self.wait()
         self.play(Transform(mTitle, cTitle))
         self.play(mTitle.animate.move_to(1.2*UP+2.2*LEFT))
         self.play(DrawBorderThenFill(conimage))
@@ -77,17 +77,17 @@ class BlaisePascalIntro(Scene):
             for row in range(4)
         ]).arrange(DOWN)
         self.play(DrawBorderThenFill(pyramid))
-        self.wait(1)
+        self.wait()
         self.play(pyramid.animate.move_to(2.2*RIGHT+0.2*DOWN))
 
         ptrstitle = Tex("Pascal's Triangle").scale(1)
         ptrstitle.move_to(2.2*RIGHT+1.2*UP)
         self.play(FadeIn(ptrstitle, target_position=mTitle))
-        self.wait(2)
+        self.wait()
         self.play(FadeOut(mTitle, conimage, ptrstitle, pyramid))
-        self.wait(1)
+        self.wait()
         ch2title = Tex("Chapter 2: Early Life").scale(2)
-        self.wait(1)
+        self.wait()
         bdate = Tex("June 19, 1623").scale(2)
 
         bPlace = Tex("Clermont, France").scale(1)
@@ -101,7 +101,7 @@ class BlaisePascalIntro(Scene):
         clermontim = ImageMobject("clermont")
         self.play(FadeIn(clermontim, shift=UP))
         self.play(Transform(ch2title, bPlace))
-        self.wait(3)
+        self.wait()
 
         paperTitle = Tex("Essai pour les Coniques")
         paperImage = SVGMobject("scroll.svg").scale(1)
@@ -145,8 +145,25 @@ class BlaisePascalIntro(Scene):
 
         self.play(FadeOut(ch3title, pl2, plr2Won, pl1rWon, player2Wins, wRounds))
 
-        ch4Title = Tex("Chapter 4: Modern Probability").scale(2)
-        self.play(DrawBorderThenFill(ch4Title))
+        wAvg = Tex("Weighted Average")
+        wAvg.move_to(UP*2)
+        self.play(DrawBorderThenFill(wAvg))
+        pEquation = SVGMobject("sigma.svg")
+        self.play(DrawBorderThenFill(pEquation))
+        self.play(FadeOut(pEquation, wAvg))
+
+        ch4title = Tex("Chapter 4: Legacy").scale(2)
+        legacy = Tex("Legacy")
+        legacy.move_to(UP*2)
+
+        deviation = SVGMobject("deviation.svg")
+
+        self.play(DrawBorderThenFill(ch4title))
+        
+        self.play(Transform(ch4title, legacy))
+
+        self.play(DrawBorderThenFill(deviation))
+
 
 
         
