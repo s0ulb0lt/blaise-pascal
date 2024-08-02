@@ -5,16 +5,7 @@ from pathlib import Path
 from openai import OpenAI
 import os
 
-client = OpenAI()
 
-speechFilePath = Path(__file__).parent / "speech.mp3"
-respone = client.audio.speech.create(
-    model="tts-1",
-    voice="echo",
-    input="This is the story of Blaise Pascal. 1623-1662. Blaise Pascal was, simply, a mathematician from birth. At 16, he invented his conic sections hexagon theorem. Along with expanding the binomial theorem with Pascal’s triangle."
-)
-
-respone.stream_to_file(speech_file_path)
 
 class CreateCircle(Scene):
     def construct(self):
